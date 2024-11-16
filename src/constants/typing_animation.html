@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing and Erasing Animation</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #222;
+    color: #fff;
+    font-family: monospace;
+  }
+  .typing-container {
+    font-size: 1.5em;
+    border-right: 2px solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  @keyframes blink-cursor {
+    50% { border-color: transparent; }
+  }
+</style>
+</head>
+<body>
+  <div class="typing-container" id="typingText"></div>
+
+  <script>
+    const typingContainer = document.getElementById("typingText");
+    const typingSpeed = 100; // Milliseconds per character when typing
+    const erasingSpeed = 50; // Milliseconds per character when erasing
+    const delayBetweenActions = 1000; // Delay between typing and erasing
+    const textSequence = ["Hi there", "Good morning"];
+    let sequenceIndex = 0;
+    let charIndex = 0;
+    let isErasing = false;
+
+    function typeAndErase() {
+      // Get the current text to type or erase
+      const currentText = textSequence[sequenceIndex];
+      
+      if (!isErasing) {
+        // Typing logic
+        if (charIndex < currentText.length) {
+          typingContainer.textContent += currentText[charIndex];
+          charIndex++;
+          setTimeout(typeAndErase, typingSpeed);
+        } else {
+          // Finished typing, prepare to erase
+          isErasing = true;
+          setTimeout(typeAndErase, delayBetweenActions);
+        }
+      } else {
+        // Erasing logic
+        if (charIndex > 0) {
+          typingContainer.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(typeAndErase, erasingSpeed);
+        } else {
+          // Finished erasing, move to next text in the sequence
+          isErasing = false;
+          sequenceIndex = (sequenceIndex + 1) % textSequence.length;
+          setTimeout(typeAndErase, delayBetweenActions);
+        }
+      }
+
+      // Cursor blink effect
+      typingContainer.style.borderRight = "2px solid #fff";
+      typingContainer.style.animation = "blink-cursor 0.75s step-end infinite";
+    }
+
+    // Initialize typing and erasing effect
+    typeAndErase();
+  </script>
+</body>
+</html>
