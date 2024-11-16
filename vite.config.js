@@ -1,8 +1,24 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // This ensures proper path resolution
+  build: {
+    // Safe chunking configuration
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Only separate core vendor files
+          vendor: ['react', 'react-dom'],
+          three: ['three']
+        }
+      }
+    },
+    // Increase warning limit to avoid build errors
+    chunkSizeWarningLimit: 1500,
+    // Ensure source maps for debugging
+    sourcemap: true
+  },
+  // Optimize asset handling
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
 })

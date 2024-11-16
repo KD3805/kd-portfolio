@@ -34,7 +34,7 @@ const Hero = () => {
 
         {/* name and intro */}
         <motion.div
-          variants={fadeIn("down", "spring", 0.5, 2)}
+          variants={fadeIn("right", "spring", 0.5, 2)}
           initial="hidden"
           animate="show"
         >
