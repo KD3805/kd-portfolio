@@ -12,7 +12,7 @@ import { tempEmailJs } from "../constants";
 
 const Contact = () => {
   useEffect(() => {
-    emailjs.init(tempEmailJs.public_key);
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
   }, []);
 
   const formRef = useRef();
@@ -33,41 +33,37 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
-        tempEmailJs.service_id,
-        tempEmailJs.template_id,
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
           to_name: "Kishan Dabhi",
           from_email: form.email,
           to_email: "dabhikishan358@gmail.com",
           message: form.message,
-        },
-        tempEmailJs.public_key
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert("Ahh, something went wrong. Please try again.");
         }
       );
+
+      setLoading(false);
+      alert("Thank you. I will get back to you as soon as possible.");
+
+      setForm({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      setLoading(false);
+      console.error("Email error:", error);
+
+      alert("Ahh, something went wrong. Please try again.");
+    }
   };
 
   return (
