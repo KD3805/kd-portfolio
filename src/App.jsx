@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works } from './components'
 import Education from './components/Education'
 import BackgroundStars from './components/BackgroundStars'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
 
         <div className='relative z-0'>
           <Contact />
+          <Footer />
         </div>
       </div>
     </BrowserRouter>

@@ -34,6 +34,8 @@ import react from "./experience/react.png";
 import oibsip from "./experience/oibsip.png";
 import om from "./education/omshanti.png";
 import navyug from "./education/navyug.png";
+import linkedin from "./linkedin.png";
+import instagram from "./instagram.png";
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
@@ -50,6 +52,8 @@ export {
   mobile,
   web,
   github,
+  linkedin,
+  instagram,
   eye,
   menu,
   close,
