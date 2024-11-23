@@ -37,9 +37,7 @@
     "react-parallax-tilt": "^1.7.254",
     "react-router-dom": "^6.28.0",
     "react-vertical-timeline-component": "^3.6.0",
-    "three": "^0.170.0",
-    "@rollup/rollup-linux-x64-gnu": "4.6.1",
-    "rollup": "4.6.1"
+    "three": "^0.170.0"
   },
   "overrides": {
     "rollup": "4.6.1"

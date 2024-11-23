@@ -18,7 +18,7 @@ const Footer = () => {
                         to="https://github.com/kd3805" 
                         target="_blank"
                         className="hover:scale-110 transition-transform duration-300"
-                    >
+                    >   
                         <img
                             src={github}
                             alt="github"

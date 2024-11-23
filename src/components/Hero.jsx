@@ -33,18 +33,14 @@ const Hero = () => {
         </div>
 
         {/* name and intro */}
-        <motion.div
-          variants={fadeIn("right", "spring", 0.5, 2)}
-          initial="hidden"
-          animate="show"
-        >
+        <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I'm <span className="text-[#915eff]">{name.firstName}</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             <TypingAnimation textSequence={introSequence} />
           </p>
-        </motion.div>
+        </div>
       </div>
 
       {/* 3d model - computer canvas */}
