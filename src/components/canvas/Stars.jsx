@@ -10,7 +10,7 @@ const Stars = () => {
   // Generate random star positions using useState to memoize the calculation
   const [sphere] = useState(() => {
     try {
-      const count = 100; // Number of stars to generate
+      const count = 500; // Number of stars to generate
       const positions = new Float32Array(count * 3); // Array to store x,y,z coordinates (3 values per star)
 
       // Generate random positions for each star
